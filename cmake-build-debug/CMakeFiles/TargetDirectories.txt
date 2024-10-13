@@ -1,0 +1,3 @@
+E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/CMakeFiles/PPM_image.dir
+E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/CMakeFiles/edit_cache.dir
+E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/CMakeFiles/rebuild_cache.dir
