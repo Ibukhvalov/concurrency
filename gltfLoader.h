@@ -78,7 +78,53 @@ void computeTangent(std::vector<Vertex>& vertices,
     v2.tangent = packedTangent;
 }
 
-void processPrimitive(const tinygltf::Model& model, hittable_list& world, const tinygltf::Primitive& primitive/*, const glm::float4x4& transform, const float globalScale*/)
+glm::float4x4 getTransform(const tinygltf::Node& node, const float globalScale)
+{
+    if (node.matrix.empty())
+    {
+        glm::float3 scale{ 1.0f };
+        if (!node.scale.empty())
+        {
+            scale = glm::float3((float)node.scale[0], (float)node.scale[1], (float)node.scale[2]);
+            // check that scale is uniform, otherwise we have to support it in shader
+            // assert(scale.x == scale.y && scale.y == scale.z);
+        }
+
+        glm::quat rotation = glm::quat(1.0f, 0.0f, 0.0f, 0.0f);
+        if (!node.rotation.empty())
+        {
+            const float floatRotation[4] = {
+                    (float)node.rotation[0],
+                    (float)node.rotation[1],
+                    (float)node.rotation[2],
+                    (float)node.rotation[3],
+            };
+            rotation = glm::make_quat(floatRotation);
+        }
+
+        glm::float3 translation{ 0.0f };
+        if (!node.translation.empty())
+        {
+            translation = glm::float3((float)node.translation[0], (float)node.translation[1], (float)node.translation[2]);
+            translation *= globalScale;
+        }
+
+        const glm::float4x4 translationMatrix = glm::translate(glm::float4x4(1.0f), translation);
+        const glm::float4x4 rotationMatrix{ rotation };
+        const glm::float4x4 scaleMatrix = glm::scale(glm::float4x4(1.0f), scale);
+
+        const glm::float4x4 localTransform = translationMatrix * rotationMatrix * scaleMatrix;
+
+        return localTransform;
+    }
+    else
+    {
+        glm::float4x4 localTransform = glm::make_mat4(node.matrix.data());
+        return localTransform;
+    }
+}
+
+void processPrimitive(const tinygltf::Model& model, hittable_list& world, const tinygltf::Primitive& primitive, const glm::float4x4& transform/*, const float globalScale*/)
 {
     using namespace std;
     assert(primitive.attributes.find("POSITION") != primitive.attributes.end());
@@ -176,21 +222,21 @@ void processPrimitive(const tinygltf::Model& model, hittable_list& world, const 
         }
     }
 
-    world.addPrimitive(vertices, indices);
+    world.addPrimitive(vertices, indices, transform);
 
     //uint32_t instId = world.createInstance(Instance::Type::eMesh, meshId, matId, transform);
     //assert(instId != -1);
 }
 
 
-void processMesh(const tinygltf::Model& model, hittable_list& world, const tinygltf::Mesh& mesh/*, const glm::float4x4& transform, const float globalScale*/)
+void processMesh(const tinygltf::Model& model, hittable_list& world, const tinygltf::Mesh& mesh, const glm::float4x4& transform/*, const float globalScale*/)
 {
     using namespace std;
     clog << "Mesh name: " << mesh.name << endl;
     clog << "Primitive count: " << mesh.primitives.size() << endl;
     for (size_t i = 0; i < mesh.primitives.size(); ++i)
     {
-        processPrimitive(model, world, mesh.primitives[i]/*, transform, globalScale*/);
+        processPrimitive(model, world, mesh.primitives[i], transform/*, globalScale*/);
     }
 }
 
@@ -199,13 +245,13 @@ void processNode(const tinygltf::Model& model, hittable_list& world, const tinyg
     using namespace std;
     clog << "Node name: " << node.name << endl;
 
-    //const glm::float4x4 localTransform = getTransform(node, globalScale);
-    //const glm::float4x4 globalTransform = baseTransform * localTransform;
+    const glm::float4x4 localTransform = getTransform(node, 1);
+    const glm::float4x4 globalTransform = glm::float4x4(1.0f) * localTransform;
 
     if (node.mesh != -1) // mesh exist
     {
         const tinygltf::Mesh& mesh = model.meshes[node.mesh];
-        processMesh(model, world, mesh/*, globalTransform, globalScale*/);
+        processMesh(model, world, mesh, globalTransform/*, globalScale*/);
     }
     /*else if (node.camera != -1) // camera node
     {

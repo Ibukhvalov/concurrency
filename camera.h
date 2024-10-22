@@ -3,6 +3,7 @@
 
 #include "hittable.h"
 #include "material.h"
+#include "stb_image_write.h"
 
 class camera {
 public:
@@ -24,6 +25,8 @@ public:
 
         std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
+        auto* pixels = new uint8_t[image_width * image_height * 3];
+
         for (int j = 0; j < image_height; j++) {
             std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             for (int i = 0; i < image_width; i++) {
@@ -32,10 +35,13 @@ public:
                     ray r = get_ray(i, j);
                     pixel_color += ray_color(r, max_depth, world);
                 }
-                write_color(std::cout, pixel_samples_scale * pixel_color);
+                //write_color(std::cout, pixel_samples_scale * pixel_color);
+                fillPixel(pixels, j*image_width+i, pixel_samples_scale * pixel_color);
             }
         }
 
+        stbi_write_jpg("result.jpg", image_width, image_height, 3, pixels, 100);
+        delete[] pixels;
         std::clog << "\rDone.                 \n";
     }
 
@@ -100,7 +106,9 @@ private:
         auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
         auto ray_direction = pixel_sample - ray_origin;
 
-        return ray(ray_origin, ray_direction);
+        auto ray_time = random_double();
+
+        return ray(ray_origin, ray_direction, ray_time);
     }
 
     vec3 sample_square() const {

@@ -1,0 +1,3 @@
+"E:\jetbrains\CLion 2023.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\PPM_image.dir/objects.a
+"E:\jetbrains\CLion 2023.1\bin\mingw\bin\ar.exe" qc CMakeFiles\PPM_image.dir/objects.a @CMakeFiles\PPM_image.dir\objects1
+"E:\jetbrains\CLion 2023.1\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\PPM_image.dir/objects.a -Wl,--no-whole-archive -o PPM_image.exe -Wl,--out-implib,libPPM_image.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PPM_image.dir\linkLibs.rsp

@@ -6,7 +6,9 @@
 class triangleMesh : public hittable {
 public:
     triangleMesh(const point3 &a, const point3 &b, const point3 &c, shared_ptr<material> mat)
-            : a(a), b(b), c(c), mat(mat) {}
+            : a(a), b(b), c(c), mat(mat) {
+        bbox = aabb(a,b,c);
+    }
 
     bool hit(const ray &r, interval ray_t, hit_record &rec) const override {
         constexpr float epsilon = std::numeric_limits<float>::epsilon();
@@ -35,7 +37,7 @@ public:
         // At this stage we can compute t to find out where the intersection point is on the line.
         float t = inv_det * dot(edge2, s_cross_e1);
 
-        if (t > epsilon) // ray intersection
+        if (t > epsilon and ray_t.surrounds(t)) // ray intersection
         {
             rec.t = t;
             rec.p = vec3(r.origin() + r.direction() * t);
@@ -48,10 +50,12 @@ public:
             return false;
     }
 
+    aabb bounding_box() const override { return bbox; }
+
 private:
     point3 a, b, c; // 3 vertices
     shared_ptr<material> mat;
-
+    aabb bbox;
 };
 
 #endif

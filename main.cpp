@@ -7,14 +7,15 @@
 #include "material.h"
 #include "sphere.h"
 #include "triangle_mesh.h"
+#include "bvh.h"
 
 
 int main() {
     hittable_list world;
 
-    //triangle.gltf
+    //triangle.gltf //2triangles_rotatedZ //2triangles_transformed
     //C:/Users/Anton/Downloads/Telegram Desktop/vespa/vespa/vespa
-    if (GltfLoader::loadGltf("2triangles.gltf", world)) std::clog << "SUCCESS LOADING GLTF MODEL\n";
+    if (!GltfLoader::loadGltf("aboba.gltf", world)) std::cerr << "MODEL LOADING ERROR\n";
 
     /*auto ground_material = make_shared<lambertian>(color(0.5, 0.5, 0.5));
     world.add(make_shared<sphere>(point3(0,-1000,0), 1000, ground_material));
@@ -48,30 +49,54 @@ int main() {
                 }
             }
         }
-    }
+    }*/
 
-    auto material1 = make_shared<dielectric>(1.5);
-    world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material1));
+    //auto material1 = make_shared<dielectric>(1.5);
+    //auto material2 = make_shared<lambertian>(color(0.4, 0.2, 0.1));
+    //auto material3 = make_shared<metal>(color(0.7, 0.6, 0.5), 0.0);
+    /*point3 p1{-1,1,-1};
+    point3 p2{1,-1,0};
+    point3 p3{0,0,1};
 
-    auto material2 = make_shared<lambertian>(color(0.4, 0.2, 0.1));
-    world.add(make_shared<sphere>(point3(-4, 1, 0), 1.0, material2));
+    world.add(make_shared<triangleMesh>(point3(4, 1, 0)+p1,
+                                        point3(4, 1, 0)+p2,
+                                        point3(4, 1, 0)+p3,
+                                        make_shared<lambertian>(color(0.1, 0.2, 0.7))));
 
-    auto material3 = make_shared<metal>(color(0.7, 0.6, 0.5), 0.0);
-    world.add(make_shared<sphere>(point3(4, 1, 0), 1.0, material3));*/
+    world.add(make_shared<triangleMesh>(point3(-4, 1, 0)+p1,
+                                        point3(-4, 1, 0)+p2,
+                                        point3(-4, 1, 0)+p3,
+                                        make_shared<lambertian>(color(0.7, 0.2, 0.1))));
+
+    world.add(make_shared<triangleMesh>(point3(0, 1, 0)+p1,
+                                        point3(0, 1, 0)+p2,
+                                        point3(0, 1, 0)+p3,
+                                        make_shared<lambertian>(color(0.2, 0.7, 0.1))));
+
+    world.add(make_shared<sphere>(point3(4, 1, 0), 1,
+                                        make_shared<lambertian>(color(0.1, 0.2, 0.7))));
+
+    world.add(make_shared<sphere>(point3(-4, 1, 0), 1,
+                                        make_shared<lambertian>(color(0.7, 0.2, 0.1))));
+
+    world.add(make_shared<sphere>(point3(0, 1, 0), 1,
+                                        make_shared<lambertian>(color(0.2, 0.7, 0.1))));*/
+
+    world = hittable_list(make_shared<bvh_node>(world));
 
     camera cam;
 
-    cam.aspect_ratio      = 16.0 / 9.0;
+    cam.aspect_ratio      = 9.0 / 9.0;
     cam.image_width       = 500;
-    cam.samples_per_pixel = 10;
-    cam.max_depth         = 50;
+    cam.samples_per_pixel = 80;
+    cam.max_depth         = 16;
 
-    cam.vfov     = 20;
-    cam.lookfrom = point3(13,2,3);
+    cam.vfov     = 30;
+    cam.lookfrom = point3(4.5,2,4.5);
     cam.lookat   = point3(0,0,0);
     cam.vup      = vec3(0,1,0);
 
-    cam.defocus_angle = 0.6;
+    cam.defocus_angle = 0.0;
     cam.focus_dist    = 10.0;
 
     cam.render(world);
