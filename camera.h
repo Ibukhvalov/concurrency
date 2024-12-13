@@ -3,12 +3,12 @@
 
 #include "hittable.h"
 #include "material.h"
-#include "stb_image_write.h"
 
 class camera {
 public:
     double aspect_ratio      = 1.0;  // Ratio of image width over height
-    int    image_width       = 100;  // Rendered image width in pixel count
+    int    image_width       = 100;
+    int    image_height;
     int    samples_per_pixel = 10;   // Count of random samples for each pixel
     int    max_depth         = 10;   // Maximum number of ray bounces into scene
 
@@ -20,33 +20,40 @@ public:
     double defocus_angle = 0;  // Variation angle of rays through each pixel
     double focus_dist = 10;    // Distance from camera lookfrom point to plane of perfect focus
 
-    void render(const hittable& world) {
+    void build() {
         initialize();
-
-        std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
-
-        auto* pixels = new uint8_t[image_width * image_height * 3];
-
-        for (int j = 0; j < image_height; j++) {
-            std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
-            for (int i = 0; i < image_width; i++) {
-                color pixel_color(0,0,0);
-                for (int sample = 0; sample < samples_per_pixel; sample++) {
-                    ray r = get_ray(i, j);
-                    pixel_color += ray_color(r, max_depth, world);
-                }
-                //write_color(std::cout, pixel_samples_scale * pixel_color);
-                fillPixel(pixels, j*image_width+i, pixel_samples_scale * pixel_color);
-            }
-        }
-
-        stbi_write_jpg("result.jpg", image_width, image_height, 3, pixels, 100);
-        delete[] pixels;
-        std::clog << "\rDone.                 \n";
     }
 
+    color get_pixel_color(int i, int j, hittable* world) {
+        color pixel_color(0,0,0);
+        for (int sample = 0; sample < samples_per_pixel; sample++) {
+            ray r = get_ray(i, j);
+            pixel_color += ray_color(r, max_depth, world);
+        }
+        return pixel_samples_scale * pixel_color;
+    }
+
+    ray get_ray(int i, int j) const {
+        // Construct a camera ray originating from the defocus disk and directed at a randomly
+        // sampled point around the pixel location i, j.
+
+        auto offset = sample_square();
+        auto pixel_sample = pixel00_loc
+                            + ((i + offset.x()) * pixel_delta_u)
+                            + ((j + offset.y()) * pixel_delta_v);
+
+        auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
+        auto ray_direction = pixel_sample - ray_origin;
+
+        auto ray_time = random_double();
+
+        return ray(ray_origin, ray_direction, ray_time);
+    }
+
+
+
 private:
-    int    image_height;         // Rendered image height
+             // Rendered image height
     double pixel_samples_scale;  // Color scale factor for a sum of pixel samples
     point3 center;               // Camera center
     point3 pixel00_loc;          // Location of pixel 0, 0
@@ -94,22 +101,7 @@ private:
         defocus_disk_v = v * defocus_radius;
     }
 
-    ray get_ray(int i, int j) const {
-        // Construct a camera ray originating from the defocus disk and directed at a randomly
-        // sampled point around the pixel location i, j.
 
-        auto offset = sample_square();
-        auto pixel_sample = pixel00_loc
-                            + ((i + offset.x()) * pixel_delta_u)
-                            + ((j + offset.y()) * pixel_delta_v);
-
-        auto ray_origin = (defocus_angle <= 0) ? center : defocus_disk_sample();
-        auto ray_direction = pixel_sample - ray_origin;
-
-        auto ray_time = random_double();
-
-        return ray(ray_origin, ray_direction, ray_time);
-    }
 
     vec3 sample_square() const {
         // Returns the vector to a random point in the [-.5,-.5]-[+.5,+.5] unit square.
@@ -122,14 +114,14 @@ private:
         return center + (p[0] * defocus_disk_u) + (p[1] * defocus_disk_v);
     }
 
-    color ray_color(const ray& r, int depth, const hittable& world) const {
+    color ray_color(const ray& r, int depth, const hittable* world) const {
         // If we've exceeded the ray bounce limit, no more light is gathered.
         if (depth <= 0)
             return color(0,0,0);
 
         hit_record rec;
 
-        if (world.hit(r, interval(0.001, infinity), rec)) {
+        if (world->hit(r, interval(0.001, infinity), rec)) {
             ray scattered;
             color attenuation;
             if (rec.mat->scatter(r, rec, attenuation, scattered))

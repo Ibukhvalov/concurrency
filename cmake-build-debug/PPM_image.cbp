@@ -8,84 +8,84 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug"/>
+				<Option working_dir="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="PPM_image">
-				<Option output="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/PPM_image.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug"/>
+				<Option output="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/PPM_image.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 PPM_image"/>
-					<CompileFile command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 PPM_image"/>
+					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="PPM_image/fast">
-				<Option output="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/PPM_image.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug"/>
+				<Option output="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/PPM_image.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="E:/jetbrains/CLion 2023.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="D:/CLion 2023.3.4/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 PPM_image/fast"/>
-					<CompileFile command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 PPM_image/fast"/>
+					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug"/>
+				<Option working_dir="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug"/>
+				<Option working_dir="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="E:/jetbrains/CLion 2023.1/bin/mingw/bin/mingw32-make.exe -f &quot;E:/jetbrains/CLionProjects/PPM_image/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2023.3.4/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/jetbrains/CLionProjects/PPM_image/main.cpp">
+		<Unit filename="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/main.cpp">
 			<Option target="PPM_image"/>
 		</Unit>
-		<Unit filename="E:/jetbrains/CLionProjects/PPM_image/CMakeLists.txt">
+		<Unit filename="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

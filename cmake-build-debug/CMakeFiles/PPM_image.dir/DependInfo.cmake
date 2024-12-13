@@ -8,11 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/jetbrains/CLionProjects/PPM_image/main.cpp" "CMakeFiles/PPM_image.dir/main.cpp.obj" "gcc" "CMakeFiles/PPM_image.dir/main.cpp.obj.d"
+  "C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/main.cpp" "CMakeFiles/PPM_image.dir/main.cpp.obj" "gcc" "CMakeFiles/PPM_image.dir/main.cpp.obj.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

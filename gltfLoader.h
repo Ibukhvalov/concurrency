@@ -232,8 +232,6 @@ void processPrimitive(const tinygltf::Model& model, hittable_list& world, const 
 void processMesh(const tinygltf::Model& model, hittable_list& world, const tinygltf::Mesh& mesh, const glm::float4x4& transform/*, const float globalScale*/)
 {
     using namespace std;
-    clog << "Mesh name: " << mesh.name << endl;
-    clog << "Primitive count: " << mesh.primitives.size() << endl;
     for (size_t i = 0; i < mesh.primitives.size(); ++i)
     {
         processPrimitive(model, world, mesh.primitives[i], transform/*, globalScale*/);
@@ -243,7 +241,6 @@ void processMesh(const tinygltf::Model& model, hittable_list& world, const tinyg
 void processNode(const tinygltf::Model& model, hittable_list& world, const tinygltf::Node& node, const uint32_t currentNodeId/*, const glm::float4x4& baseTransform, const float globalScale*/)
 {
     using namespace std;
-    clog << "Node name: " << node.name << endl;
 
     const glm::float4x4 localTransform = getTransform(node, 1);
     const glm::float4x4 globalTransform = glm::float4x4(1.0f) * localTransform;
