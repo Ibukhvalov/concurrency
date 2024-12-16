@@ -291,7 +291,8 @@ void processNode(const tinygltf::Model& model, hittable_list& world, const tinyg
             tinygltf::TinyGLTF gltf_ctx;
             std::string err;
             std::string warn;
-            bool res = gltf_ctx.LoadASCIIFromFile(&model, &err, &warn, modelPath);
+            std::string fullPath = "../data/gltf/" + modelPath;
+            bool res = gltf_ctx.LoadASCIIFromFile(&model, &err, &warn, fullPath);
             if (!res)
             {
                 std::cerr << "Unable to load file: " << modelPath;

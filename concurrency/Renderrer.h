@@ -76,11 +76,10 @@ public:
 
 
     void produceImage(const char* path, int height, int width, hittable* world, camera* camera) {
+
         std::unique_lock<std::mutex> lock(mtx);
         tasks.push(new RenderImageTask(path, width, height, world, camera));
         cv.notify_all();
-
-
     }
 
 private:
