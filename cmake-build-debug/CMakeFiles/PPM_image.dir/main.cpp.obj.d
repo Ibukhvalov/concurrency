@@ -666,4 +666,5 @@ CMakeFiles/PPM_image.dir/main.cpp.obj: \
  C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/ray.h \
  C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/camera.h \
  C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/color.h \
+ C:\Users\vivan\OneDrive\Desktop\cpp\concurrency\concurrency/RenderImageTask.h \
  C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/stb_image_write.h

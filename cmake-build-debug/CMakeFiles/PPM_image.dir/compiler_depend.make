@@ -188,6 +188,7 @@ CMakeFiles/PPM_image.dir/main.cpp.obj: C:/Users/vivan/OneDrive/Desktop/cpp/concu
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/bvh.h \
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/camera.h \
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/color.h \
+  C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/concurrency/RenderImageTask.h \
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/concurrency/Renderrer.h \
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm-wrapper.hpp \
   C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm/gtc/type_ptr.hpp \
@@ -863,6 +864,8 @@ C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm/detail/type_vec2.inl:
 C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm/detail/type_vec3.hpp:
 
 C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm/detail/type_vec3.inl:
+
+C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/concurrency/RenderImageTask.h:
 
 C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/glm/ext/vector_float4_precision.hpp:
 
@@ -1608,9 +1611,9 @@ D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/
 
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h:
 
-D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h:
-
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/shaintrin.h:
+
+D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h:
 
 D:/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/sgxintrin.h:
 

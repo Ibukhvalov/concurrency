@@ -14,7 +14,8 @@
 int main() {
     hittable_list world;
 
-    if (!GltfLoader::loadGltf("abobaText.gltf", world)) std::cerr << "MODEL LOADING ERROR\n";
+
+    if (!GltfLoader::loadGltf("suzanne.gltf", world)) std::cerr << "MODEL LOADING ERROR\n";
 
 
 
@@ -43,7 +44,8 @@ int main() {
     renderer.produceImage("../data/test1.jpg", cam.image_width, cam.image_height, &world, &cam);
 
     camera cam2(cam);
-    cam.vfov = 45;
+    cam2.vfov = 45;
+    cam2.lookfrom = point3(5.5,3,4.5);
     cam2.build();
 
     renderer.produceImage("../data/test2.jpg", cam.image_width, cam.image_height, &world, &cam2);

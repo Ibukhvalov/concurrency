@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/concurrency/RenderImageTask.h">
+			<Option target="PPM_image"/>
+		</Unit>
 		<Unit filename="C:/Users/vivan/OneDrive/Desktop/cpp/concurrency/main.cpp">
 			<Option target="PPM_image"/>
 		</Unit>
