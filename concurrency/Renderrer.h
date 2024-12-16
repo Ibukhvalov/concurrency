@@ -19,77 +19,106 @@ struct Pixel {
     int j;
 };
 
+struct RenderContext {
+    hittable* world;
+    camera* camera;
+    int width;
+    int height;
+};
+
+struct RenderImageTask {
+    RenderImageTask(const char* path, int width, int height, hittable* world, camera* camera) {
+        ctx = RenderContext{world, camera, width, height};
+        imagePath = path;
+        pixels = new uint8_t[width * height * 3];
+
+        for (int j = 0; j < height; ++j)
+            for (int i = 0; i < width; ++i)
+                pixelsToProduce.push(new Pixel{i, j});
+
+
+    }
+
+    ~RenderImageTask() {
+        delete[] pixels;
+    }
+
+    void writeImage() const {
+        stbi_write_jpg(imagePath , ctx.width, ctx.height, 3, pixels, 100);
+    }
+
+    RenderContext ctx{};
+    std::queue<Pixel*> pixelsToProduce;
+    uint8_t* pixels{};
+    const char* imagePath;
+};
+
 
 class Renderer {
 public:
-    Renderer(int numConsumers, int width, int height, hittable* world, camera* camera) : doneProducing(false),
-                                                                                         width(width), height(height), pixels(new uint8_t[width * height * 3]),
-                                                                                         world(world), camera(camera){
+    Renderer(int numConsumers): isEnding(false) {
         for (int i = 0; i < numConsumers; ++i) {
             consumers.emplace_back(&Renderer::consume, this);
         }
     }
 
-
-
-    void produce() {
-        for (int j = 0; j < height; ++j) {
-            for (int i = 0; i < width; ++i) {
-                std::unique_lock<std::mutex> lock(mtx);
-                pixelQueue.push({i, j});
-                lock.unlock();
-                cv.notify_one();
-            }
-        }
-
-        std::unique_lock<std::mutex> lock(mtx);
-        doneProducing = true;
-        lock.unlock();
+    ~Renderer() {
+        isEnding = true;
         cv.notify_all();
 
-        for (auto& consumer : consumers) {
-            consumer.join();
+        for (auto& cons : consumers) {
+            if (cons.joinable()) {
+                cons.join();
+            }
         }
+    }
 
-        stbi_write_jpg("result.jpg", width, height, 3, pixels, 100);
-        delete[] pixels;
+
+
+    void produceImage(const char* path, int height, int width, hittable* world, camera* camera) {
+        std::unique_lock<std::mutex> lock(mtx);
+        tasks.push(new RenderImageTask(path, width, height, world, camera));
+        cv.notify_all();
+
+
     }
 
 private:
-    int width, height;
-    uint8_t* pixels;
-    hittable* world;
-    camera* camera;
-    std::queue<Pixel> pixelQueue;
+    std::queue<RenderImageTask*> tasks;
     std::mutex mtx;
     std::condition_variable cv;
-    bool doneProducing;
+    bool isEnding;
     std::vector<std::thread> consumers;
 
     void consume() {
-        bool processing = true;
-        while (processing) {
-            Pixel pixel;
+        while (true) {
+            RenderImageTask* pickedTask;
+            Pixel* pickedPixel;
+
             bool picked = false;
             {
                 std::unique_lock<std::mutex> lock(mtx);
-                cv.wait(lock, [this] { return !pixelQueue.empty() || doneProducing; });
-                if (pixelQueue.empty() && doneProducing) {
-                    processing = false;
-                }
+                cv.wait(lock, [this] { return !tasks.empty() || isEnding; });
+                if(tasks.empty() && isEnding) break;
+                if (!tasks.empty()) {
+                    pickedTask = tasks.front();
 
-                if (!pixelQueue.empty()) {
-                    pixel = pixelQueue.front();
-                    picked = true;
-                    pixelQueue.pop();
+                    if(pickedTask->pixelsToProduce.empty()) {
+                        tasks.pop();
+                        pickedTask->writeImage();
+                        delete pickedTask;
+                    } else {
+                        pickedPixel = (pickedTask->pixelsToProduce.front());
+                        pickedTask->pixelsToProduce.pop();
+                        picked = true;
+                    }
                 }
             }
 
             if (picked) {
-                color color = camera->get_pixel_color(pixel.i, pixel.j, world);
-
-                int index = pixel.j*width+pixel.i;
-                fillPixel(pixels, index, color);
+                color color = pickedTask->ctx.camera->get_pixel_color(pickedPixel->i, pickedPixel->j, pickedTask->ctx.world);
+                int index = pickedPixel->j*pickedTask->ctx.width+pickedPixel->i;
+                fillPixel(pickedTask->pixels, index, color);
             }
         }
     }

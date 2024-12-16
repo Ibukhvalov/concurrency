@@ -23,7 +23,7 @@ int main() {
     camera cam;
 
     cam.aspect_ratio      = 9.0 / 9.0;
-    cam.image_width       = 500;
+    cam.image_width       = 200;
     cam.samples_per_pixel = 80;
     cam.max_depth         = 16;
 
@@ -38,6 +38,8 @@ int main() {
     cam.build();
 
 
-    Renderer renderer(5, cam.image_width, cam.image_height, &world, &cam);
-    renderer.produce();
+
+    Renderer renderer(5);
+    renderer.produceImage("test1.jpg", cam.image_width, cam.image_height, &world, &cam);
+    renderer.produceImage("test2.jpg", cam.image_width, cam.image_height, &world, &cam);
 }
